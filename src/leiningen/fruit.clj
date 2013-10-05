@@ -1,33 +1,51 @@
 (ns leiningen.fruit
   (:require [leiningen compile javac]
+            [leiningen.core.eval :as eval]
             [robert.hooke :as hooke]))
 
-(def ^:const robovm-paths
+(def ^:const robovm-exec "/bin/robovm")
+(def ^:const robovm-jars
   ["/lib/robovm-rt.jar"
    "/lib/robovm-objc.jar"
    "/lib/robovm-cocoatouch.jar"])
 
-(defn compile-source
+(defn source-to-bytecode
   "Compiles both Java and Clojure source files."
   [{java-only :java-only :as project} & args]
   (apply leiningen.javac/javac project args)
   (when-not java-only
     (leiningen.compile/compile project)))
 
+(defn bytecode-to-native
+  "Compiles the bytecode into native code."
+  [{{:keys [robovm-path]} :ios :as project} & args]
+  (eval/sh (str robovm-path robovm-exec)
+           "-verbose"
+           "-arch"
+           "x86"
+           "-os"
+           "ios"
+           "-cp"
+           (->> (for [path robovm-jars] (str robovm-path path))
+                (clojure.string/join ":")
+                (str "target/classes:"))
+           (str (:main project))))
+
 (defn execute-subtask
   "Executes a subtask defined by `name` on the given project."
   [project name args]
   (case name
-    "compile" (compile-source project)
+    "compile" (source-to-bytecode project)
+    "create-native" (bytecode-to-native project)
     :else (println "Subtask is not recognized:" name)))
 
 (defn classpath-hook
-  "Adds the robovm paths to the classpath."
+  "Adds the RoboVM paths to the classpath."
   [f {{:keys [robovm-path]} :ios :as project}]
   (reduce (fn [paths path]
             (conj paths (str robovm-path path)))
           (f project)
-          robovm-paths))
+          robovm-jars))
 
 (defn fruit
   "Provides a main entry point."
