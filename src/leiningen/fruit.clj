@@ -2,6 +2,11 @@
   (:require [leiningen compile javac]
             [robert.hooke :as hooke]))
 
+(def ^:const robovm-paths
+  ["/lib/robovm-rt.jar"
+   "/lib/robovm-objc.jar"
+   "/lib/robovm-cocoatouch.jar"])
+
 (defn compile-source
   "Compiles both Java and Clojure source files."
   [{java-only :java-only :as project} & args]
@@ -17,11 +22,12 @@
     :else (println "Subtask is not recognized:" name)))
 
 (defn classpath-hook
+  "Adds the robovm paths to the classpath."
   [f {{:keys [robovm-path]} :ios :as project}]
-  (conj (f project)
-        (str robovm-path "/lib/robovm-rt.jar")
-        (str robovm-path "/lib/robovm-objc.jar")
-        (str robovm-path "/lib/robovm-cocoatouch.jar")))
+  (reduce (fn [paths path]
+            (conj paths (str robovm-path path)))
+          (f project)
+          robovm-paths))
 
 (defn fruit
   "Provides a main entry point."
