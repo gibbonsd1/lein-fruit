@@ -28,7 +28,7 @@
            "-cp"
            (->> (for [path robovm-jars] (str robovm-path path))
                 (clojure.string/join ":")
-                (str "target/classes:"))
+                (str (:target-path project) "/classes:"))
            (str (:main project))))
 
 (defn execute-subtask
