@@ -30,9 +30,9 @@
              (str (:target-path project) "/classes:"))
         args
         (str (:main project))]
-    flatten
-    (remove nil?)
-    (apply leiningen.core.eval/sh)))
+       flatten
+       (remove nil?)
+       (apply leiningen.core.eval/sh)))
 
 (defn execute-subtask
   "Executes a subtask defined by `name` on the given project."
