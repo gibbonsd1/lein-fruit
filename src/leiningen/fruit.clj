@@ -1,6 +1,6 @@
 (ns leiningen.fruit
   (:require [leiningen compile javac]
-            [leiningen.core.eval :as eval]
+            [leiningen.core.eval]
             [robert.hooke :as hooke]))
 
 (def ^:const robovm-exec "/bin/robovm")
@@ -11,32 +11,35 @@
 
 (defn source-to-bytecode
   "Compiles both Java and Clojure source files."
-  [{java-only :java-only :as project} & args]
+  [{java-only :java-only :as project} args]
   (apply leiningen.javac/javac project args)
   (when-not java-only
     (leiningen.compile/compile project)))
 
 (defn bytecode-to-native
   "Compiles the bytecode into native code."
-  [{{:keys [robovm-path]} :ios :as project} & args]
-  (eval/sh (str robovm-path robovm-exec)
-           "-verbose"
-           "-arch"
-           "x86"
-           "-os"
-           "ios"
-           "-cp"
-           (->> (for [path robovm-jars] (str robovm-path path))
-                (clojure.string/join ":")
-                (str (:target-path project) "/classes:"))
-           (str (:main project))))
+  [{{:keys [robovm-path]} :ios :as project} args]
+  (->> [(str robovm-path robovm-exec)
+        "-arch"
+        "x86"
+        "-os"
+        "ios"
+        "-cp"
+        (->> (for [path robovm-jars] (str robovm-path path))
+             (clojure.string/join ":")
+             (str (:target-path project) "/classes:"))
+        args
+        (str (:main project))]
+    flatten
+    (remove nil?)
+    (apply leiningen.core.eval/sh)))
 
 (defn execute-subtask
   "Executes a subtask defined by `name` on the given project."
   [project name args]
   (case name
-    "compile" (source-to-bytecode project)
-    "create-native" (bytecode-to-native project)
+    "compile" (source-to-bytecode project args)
+    "create-native" (bytecode-to-native project args)
     :else (println "Subtask is not recognized:" name)))
 
 (defn classpath-hook
