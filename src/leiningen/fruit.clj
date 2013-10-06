@@ -10,7 +10,7 @@
    "/lib/robovm-cocoatouch.jar"])
 
 (defn source-to-bytecode
-  "Compiles both Java and Clojure source files."
+  "Compiles the Java and Clojure source files into bytecode."
   [{java-only :java-only :as project} args]
   (apply leiningen.javac/javac project args)
   (when-not java-only
@@ -20,11 +20,7 @@
   "Compiles the bytecode into native code."
   [{{:keys [robovm-path]} :ios :as project} args]
   (->> [(str robovm-path robovm-exec)
-        "-arch"
-        "x86"
-        "-os"
-        "ios"
-        "-cp"
+        "-arch" "x86" "-os" "ios" "-cp"
         (->> (for [path robovm-jars] (str robovm-path path))
              (clojure.string/join ":")
              (str (:target-path project) "/classes:"))
