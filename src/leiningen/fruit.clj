@@ -18,13 +18,14 @@
 
 (defn bytecode-to-native
   "Compiles the bytecode into native code."
-  [{{:keys [robovm-path]} :ios :as project} args]
+  [{{:keys [robovm-path robovm-args]} :ios :as project} args]
   (->> [(str robovm-path robovm-exec)
         "-arch" "x86" "-os" "ios" "-cp"
         (->> (for [path robovm-jars] (str robovm-path path))
              (clojure.string/join ":")
              (str (:target-path project) "/classes:"))
         args
+        robovm-args
         (str (:main project))]
        flatten
        (remove nil?)
