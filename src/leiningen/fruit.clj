@@ -36,17 +36,19 @@
   [project name args]
   (case name
     "compile" (source-to-bytecode project)
+    
+    ; x86 tasks
     "create-x86" (run-robovm project ["-arch" "x86" args])
+    "run" (run-robovm project ["-arch" "x86" "-run" args])
+    "doall" (or (execute-subtask project "compile" args)
+                (execute-subtask project "run" args))
+    
+    ; arm tasks
     "create-arm" (run-robovm project ["-arch" "thumbv7" args])
     "ipa" (run-robovm project ["-arch" "thumbv7" "-createipa" args])
-    "run" (run-robovm project ["-arch" "x86" "-run" args])
-    "install" (run-robovm project ["-arch" "thumbv7" "-run" args])
-    "build" (doseq [task ["compile" "create-x86"]]
-              (execute-subtask project task args))
-    "release" (doseq [task ["compile" "ipa"]]
-                (execute-subtask project task args))
-    "doall" (doseq [task ["compile" "run"]]
-              (execute-subtask project task args))
+    "release" (or (execute-subtask project "compile" args)
+                  (execute-subtask project "ipa" args))
+    
     :else (println "Subtask is not recognized:" name)))
 
 (defn classpath-hook
