@@ -19,13 +19,13 @@
 
 (defn run-robovm
   "Runs the RoboVM executable."
-  [{{:keys [robovm-path robovm-args]} :ios :as project} args]
+  [{{:keys [robovm-path robovm-opts]} :ios :as project} args]
   (->> [(str robovm-path robovm-exec)
         "-os" "ios" "-cp"
         (->> (leiningen.core.classpath/get-classpath project)
              (filter #(.exists (io/file %)))
              (clojure.string/join ":"))
-        robovm-args
+        robovm-opts
         args
         (str (:main project))]
        flatten
