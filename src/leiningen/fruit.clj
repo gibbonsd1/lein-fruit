@@ -1,6 +1,7 @@
 (ns leiningen.fruit
-  (:require [leiningen compile javac]
-            [leiningen.core.eval]
+  (:require [clojure.java.io :as io]
+            [leiningen compile javac]
+            [leiningen.core classpath eval]
             [robert.hooke :as hooke]))
 
 (def ^:const robovm-exec "/bin/robovm")
@@ -21,9 +22,9 @@
   [{{:keys [robovm-path robovm-args]} :ios :as project} args]
   (->> [(str robovm-path robovm-exec)
         "-os" "ios" "-cp"
-        (->> (for [path robovm-jars] (str robovm-path path))
-             (clojure.string/join ":")
-             (str (:target-path project) "/classes:"))
+        (->> (leiningen.core.classpath/get-classpath project)
+             (filter #(.exists (io/file %)))
+             (clojure.string/join ":"))
         robovm-args
         args
         (str (:main project))]
