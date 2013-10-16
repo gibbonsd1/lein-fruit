@@ -1,6 +1,6 @@
 (ns leiningen.fruit
   (:require [clojure.java.io :as io]
-            [leiningen compile javac]
+            [leiningen compile javac new]
             [leiningen.core classpath eval]
             [robert.hooke :as hooke]))
 
@@ -36,6 +36,12 @@
   "Executes a subtask defined by `name` on the given project."
   [project name args]
   (case name
+    "new" (when (> (count args) 0)
+            (leiningen.new/new {}
+                               (if (> (count args) 1)
+                                 (str "ios-" (first args))
+                                 "ios-clojure")
+                               (last args)))
     "compile" (source-to-bytecode project)
     
     ; x86 tasks
@@ -60,7 +66,7 @@
           (f project)
           robovm-jars))
 
-(defn fruit
+(defn ^{:no-project-needed true} fruit
   "Provides a main entry point."
   [project & [cmd & args]]
   (hooke/add-hook #'leiningen.core.classpath/get-classpath #'classpath-hook)
