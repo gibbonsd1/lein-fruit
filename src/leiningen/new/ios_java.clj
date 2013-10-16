@@ -1,9 +1,9 @@
-(ns leiningen.new.ios-clojure
+(ns leiningen.new.ios-java
   (:require [leiningen.new.templates :as t]))
 
-(defn ios-clojure
+(defn ios-java
   [name]
-  (let [render (t/renderer "ios-clojure")
+  (let [render (t/renderer "ios-java")
         package-name (t/multi-segment (t/sanitize name))
         class-name "Main"
         main-ns (str package-name "." class-name)
@@ -16,6 +16,5 @@
               :year (t/year)}]
     (t/->files data
                ["project.clj" (render "project.clj" data)]
-               ["src/java/{{path}}.java" (render "Main.java" data)]
-               "src/clojure"
+               ["src/{{path}}.java" (render "Main.java" data)]
                "resources")))

@@ -36,12 +36,12 @@
   "Executes a subtask defined by `name` on the given project."
   [project name args]
   (case name
-    "new" (when (> (count args) 0)
-            (leiningen.new/new {}
-                               (if (> (count args) 1)
-                                 (str "ios-" (first args))
-                                 "ios-clojure")
-                               (last args)))
+    "new" (if (> (count args) 0)
+            (leiningen.new/new {} "ios-clojure" (first args))
+            (println "Must provide a project name after `new`."))
+    "new-java" (if (> (count args) 0)
+                 (leiningen.new/new {} "ios-java" (first args))
+                 (println "Must provide a project name after `new-java`."))
     "compile" (source-to-bytecode project)
     
     ; x86 tasks
