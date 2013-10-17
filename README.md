@@ -5,10 +5,13 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 ## Usage
 
 1. You must be running Mac OS X with Xcode installed (tested with 4.6.3 but the latest might also work).
-2. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org/robovm-0.0.5.tar.gz) somewhere.
+2. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org) somewhere.
 3. Install [Leiningen](https://github.com/technomancy/leiningen) and create or modify `~/.lein/profiles.clj`:
-    {:user {:plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
-            :ios {:robovm-path "/absolute/path/to/robovm/directory"}}}
+	- Here's what mine looks like:
+    {:user {
+        :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
+        :ios {:robovm-path "/absolute/path/to/robovm-0.0.5"}
+    }}
 
 ## Licensing
 
