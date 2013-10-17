@@ -43,6 +43,7 @@
                  (leiningen.new/new {} "ios-java" (first args))
                  (println "Must provide a project name after `new-java`."))
     "compile" (source-to-bytecode project)
+    "help" (run-robovm project ["-help"])
     
     ; x86 tasks
     "create-x86" (run-robovm project ["-arch" "x86" args])
