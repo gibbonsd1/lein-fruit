@@ -2,7 +2,7 @@
 
 A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It was modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar.
 
-## Usage
+## Installation
 
 1. You must be running Mac OS X with Xcode installed (tested with 4.6.3 but the latest might also work)
 2. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org) somewhere
@@ -12,12 +12,15 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
         :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
         :ios {:robovm-path "/absolute/path/to/robovm-0.0.5"}
     }}
-4. Try the following commands:
 
-    # Create a new Clojure/iOS project
-    lein fruit new hello-world
-    # Create a new Java/iOS project
-    lein fruit new-java hello-world
+## Usage
+
+```bash
+# Create a new Clojure/iOS project
+lein fruit new hello-world
+# Create a new Java/iOS project
+lein fruit new-java hello-world
+```
 
 ## Licensing
 
