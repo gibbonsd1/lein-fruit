@@ -21,7 +21,7 @@
   "Runs the RoboVM executable."
   [{{:keys [robovm-path robovm-opts]} :ios :as project} args]
   (->> [(str robovm-path robovm-exec)
-        "-os" "ios" "-cp"
+        "-verbose" "-os" "ios" "-cp"
         (->> (leiningen.core.classpath/get-classpath project)
              (filter #(.exists (io/file %)))
              (clojure.string/join ":"))
