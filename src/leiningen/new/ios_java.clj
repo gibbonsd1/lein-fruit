@@ -9,8 +9,8 @@
         main-ns (str package-name "." class-name)
         data {:app-name name
               :name (t/project-name name)
-              :class-name class-name
               :package package-name
+              :class-name class-name
               :namespace main-ns
               :path (t/name-to-path main-ns)
               :year (t/year)}]

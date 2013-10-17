@@ -8,4 +8,4 @@
                       "-frameworks" "UIKit:OpenGLES:QuartzCore:CoreGraphics:OpenAL:AudioToolbox:AVFoundation"
                       "-resources" "resources/**"]}
   :aot :all
-  :main {{namespace}})
+  :main {{java-namespace}})
