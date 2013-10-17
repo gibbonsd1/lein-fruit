@@ -4,7 +4,7 @@
             [leiningen.core classpath eval]
             [robert.hooke :as hooke]))
 
-(def ^:const robovm-exec "/bin/robovm")
+(def ^:const robovm-compiler "/lib/robovm-compiler.jar")
 (def ^:const robovm-jars
   ["/lib/robovm-rt.jar"
    "/lib/robovm-objc.jar"
@@ -20,8 +20,10 @@
 (defn run-robovm
   "Runs the RoboVM executable."
   [{{:keys [robovm-path robovm-opts]} :ios :as project} args]
-  (->> [(str robovm-path robovm-exec)
-        "-verbose" "-os" "ios" "-cp"
+  (->> [(or (:java-cmd project) (System/getenv "JAVA_CMD") "java")
+        "-Xmx4096m" "-Xss1024k"
+        "-jar" (str robovm-path robovm-compiler)
+        "-verbose" "-home" robovm-path "-os" "ios" "-cp"
         (->> (leiningen.core.classpath/get-classpath project)
              (filter #(.exists (io/file %)))
              (clojure.string/join ":"))
