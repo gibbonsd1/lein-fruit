@@ -18,8 +18,27 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 ```bash
 # Create a new Clojure/iOS project
 lein fruit new hello-world
-# Create a new Java/iOS project
+# ...or a new Java/iOS project
 lein fruit new-java hello-world
+
+# Go inside the project
+cd hello-world
+
+# Build an x86 version and run in a simulator
+lein fruit doall
+# ...which is the same thing as
+lein fruit compile && lein fruit run
+# ...and if you want the iPad simulator
+lein fruit doall -ios-sim-family ipad
+
+# Build an ARM version and run on a device
+lein fruit release
+# ..which is the same thing as
+lein fruit compile && lein fruit ipa
+
+# All flags are passed directly to RoboVM
+# See the options
+lein fruit help
 ```
 
 ## Licensing
