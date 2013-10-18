@@ -24,7 +24,7 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 ```
 
 Replace the "x.x.x" with the version below:
-[[https://clojars.org/lein-fruit][https://clojars.org/lein-fruit/latest-version.svg]]
+![](https://clojars.org/lein-fruit/latest-version.svg)
 
 ## Usage
 
