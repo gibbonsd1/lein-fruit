@@ -6,7 +6,7 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 
 1. This plugin has not been well-tested on actual iOS devices because...I don't own any. I'm an Android guy (go figure).
 2. There is no REPL and any attempt to call eval at runtime will cause an exception because iOS doesn't allow executable memory.
-3. Due to Clojure's [weird import behavior](https://groups.google.com/d/msg/clojure/tWSEsOk_pM4/y7kDQpEV-1gJ), importing most [RoboVM Cocoa Touch classes](https://github.com/robovm/robovm/tree/master/cocoatouch/src/main/java/org/robovm/cocoatouch) will lead to a compile error. Instead, you must invoke these classes dynamically. The template provides an example of this, including some helpful convenience functions.
+3. Due to Clojure's [import behavior](https://groups.google.com/d/msg/clojure/tWSEsOk_pM4/y7kDQpEV-1gJ), importing most [RoboVM Cocoa Touch classes](https://github.com/robovm/robovm/tree/master/cocoatouch/src/main/java/org/robovm/cocoatouch) will lead to a compile error. Instead, you must invoke these classes dynamically. The template provides an example of this, including some helpful convenience functions.
 
 ## Installation
 
@@ -14,12 +14,14 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 2. Install Xcode (tested with 4.6.3)
 3. Install [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 4. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org/robovm-0.0.5.tar.gz)
-5. Install [Leiningen](https://github.com/technomancy/leiningen), and create or modify `~/.lein/profiles.clj`
-	- Here's what mine looks like:
-    {:user {
-        :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
-        :ios {:robovm-path "/absolute/path/to/robovm-0.0.5"}
-    }}
+5. Install [Leiningen](https://github.com/technomancy/leiningen), and create or modify `~/.lein/profiles.clj` so it looks like this:
+
+```clojure
+{:user {
+    :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
+    :ios {:robovm-path "/absolute/path/to/robovm-0.0.5"}
+}}
+```
 
 ## Usage
 
