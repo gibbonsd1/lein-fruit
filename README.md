@@ -1,6 +1,6 @@
 ## Introduction
 
-A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It is modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar.
+A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It is modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar. Both plugins are included in [Nightcode](http://nightcode.info/), for those who prefer not using the command line.
 
 ## Caveats
 
@@ -24,6 +24,7 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 ```
 
 Replace the "x.x.x" with the version below:
+
 ![](https://clojars.org/lein-fruit/latest-version.svg)
 
 ## Usage
