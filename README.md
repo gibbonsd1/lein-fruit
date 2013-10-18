@@ -8,9 +8,11 @@ This plugin has not been well-tested on actual iOS devices because...I don't own
 
 ## Installation
 
-1. You must be running Mac OS X with Xcode installed (tested with 4.6.3 but the latest might also work)
-2. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org/robovm-0.0.5.tar.gz) somewhere
-3. Install [Leiningen](https://github.com/technomancy/leiningen) and create or modify `~/.lein/profiles.clj`
+1. Get a computer running Mac OS X
+2. Install Xcode (tested with 4.6.3 but the latest might also work)
+3. Install [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
+4. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org/robovm-0.0.5.tar.gz)
+5. Install [Leiningen](https://github.com/technomancy/leiningen), and create or modify `~/.lein/profiles.clj`
 	- Here's what mine looks like:
     {:user {
         :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
@@ -44,4 +46,4 @@ lein fruit help
 
 ## Licensing
 
-All source files that originate from this project are dedicated to the public domain. I would love pull requests, and will assume they are also dedicated to the public domain.
+All source files that originate from this project are dedicated to the public domain. I would love pull requests, and will assume that they are also dedicated to the public domain.
