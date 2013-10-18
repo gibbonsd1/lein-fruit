@@ -8,7 +8,6 @@
         utils-ns (str main-ns "-utils")
         package-name (t/sanitize main-ns)
         package-prefix (->> (.lastIndexOf package-name ".")
-                            (+ 1)
                             (subs package-name 0))
         class-name "Main"
         java-ns (str package-name "." class-name)
