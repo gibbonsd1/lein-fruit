@@ -14,7 +14,6 @@ public class {{class-name}} extends UIApplicationDelegate.Adapter {
 		button.setTitle("Click me!", UIControlState.Normal);
 		
 		button.addOnTouchUpInsideListener(new UIControl.OnTouchUpInsideListener() {
-			@Override
 			public void onTouchUpInside(UIControl control, UIEvent event) {
 				button.setTitle("Click #" + (++clickCount), UIControlState.Normal);
 			}
