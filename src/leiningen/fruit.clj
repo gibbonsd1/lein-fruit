@@ -26,6 +26,7 @@
         (->> (leiningen.core.classpath/get-classpath project)
              (filter #(.exists (io/file %)))
              (clojure.string/join ":"))
+        "-plist" "Info.plist.xml"
         (when version (str "-Papp.version=" version))
         robovm-opts
         args

@@ -7,7 +7,6 @@
   :ios {:robovm-opts ["-forcelinkclasses" "{{package-prefix}}.**:clojure.**:org.robovm.cocoatouch.**"
                       "-frameworks" "UIKit:OpenGLES:QuartzCore:CoreGraphics:OpenAL:AudioToolbox:AVFoundation"
                       "-resources" "resources/**"
-                      "-plist" "Info.plist.xml"
 
                       ; these properties will be inserted into Info.plist.xml
                       "-Papp.build=1"
