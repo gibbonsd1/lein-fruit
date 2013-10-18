@@ -31,14 +31,14 @@ cd hello-world
 lein fruit doall
 # ...which is the same thing as
 lein fruit compile && lein fruit run
-# If you want the iPad simulator
+# Use the iPad simulator
 lein fruit doall -ios-sim-family ipad
 
 # Build an ARM version and run on a device
 lein fruit release
 # ..which is the same thing as
 lein fruit compile && lein fruit ipa
-# All flags are passed to RoboVM
+# Show RoboVM flags (all flags are passed to it)
 lein fruit help
 ```
 
