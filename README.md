@@ -9,7 +9,7 @@ This plugin has not been well-tested on actual iOS devices because...I don't own
 ## Installation
 
 1. Get a computer running Mac OS X
-2. Install Xcode (tested with 4.6.3 but the latest might also work)
+2. Install Xcode (tested with 4.6.3)
 3. Install [JDK 7](http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html)
 4. Download and extract [robovm-0.0.5.tar.gz](http://download.robovm.org/robovm-0.0.5.tar.gz)
 5. Install [Leiningen](https://github.com/technomancy/leiningen), and create or modify `~/.lein/profiles.clj`

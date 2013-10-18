@@ -42,7 +42,7 @@
         constructor (get-obj-constructor class-name args)]
     (if constructor
       (.newInstance constructor (into-array Object args))
-      (println "Error: No matching class found:" class-name))))
+      (println "Couldn't find class:" class-name))))
 
 (defn static-method
   [class-name method-name & args]
