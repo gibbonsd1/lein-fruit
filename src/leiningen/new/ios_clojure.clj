@@ -7,11 +7,15 @@
         main-ns (t/multi-segment (t/sanitize-ns name))
         utils-ns (str main-ns "-utils")
         package-name (t/sanitize main-ns)
+        package-prefix (->> (.lastIndexOf package-name ".")
+                            (+ 1)
+                            (subs package-name 0))
         class-name "Main"
         java-ns (str package-name "." class-name)
         data {:app-name name
               :name (t/project-name name)
               :package package-name
+              :package-prefix package-prefix
               :class-name class-name
               :namespace main-ns
               :utils-namespace utils-ns
