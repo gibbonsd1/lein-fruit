@@ -2,6 +2,10 @@
 
 A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It is modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar.
 
+## Caveats
+
+This plugin has not been well-tested on actual iOS devices because...I don't own any. I'm an Android guy (go figure). Also, keep in mind that, due to Clojure's weird import behavior, importing most [RoboVM Cocoa Touch classes](https://github.com/robovm/robovm/tree/master/cocoatouch/src/main/java/org/robovm/cocoatouch) will lead to a compile error. Instead, you must invoke these classes dynamically. The template provides an example of this, including some helpful convenience functions.
+
 ## Installation
 
 1. You must be running Mac OS X with Xcode installed (tested with 4.6.3 but the latest might also work)
@@ -20,7 +24,6 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 lein fruit new hello-world
 # ...or a new Java/iOS project
 lein fruit new-java hello-world
-
 # Go inside the project
 cd hello-world
 
@@ -28,16 +31,14 @@ cd hello-world
 lein fruit doall
 # ...which is the same thing as
 lein fruit compile && lein fruit run
-# ...and if you want the iPad simulator
+# If you want the iPad simulator
 lein fruit doall -ios-sim-family ipad
 
 # Build an ARM version and run on a device
 lein fruit release
 # ..which is the same thing as
 lein fruit compile && lein fruit ipa
-
-# All flags are passed directly to RoboVM
-# See the options
+# All flags are passed to RoboVM
 lein fruit help
 ```
 
