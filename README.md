@@ -1,6 +1,6 @@
 ## Introduction
 
-A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It was modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar.
+A Leiningen plugin for building native iOS apps in Clojure and Java using the [RoboVM](http://www.robovm.org) bytecode-to-native translator. It is modeled after [lein-droid](https://github.com/clojure-android/lein-droid) and the commands are similar.
 
 ## Installation
 
@@ -43,4 +43,4 @@ lein fruit help
 
 ## Licensing
 
-All source files that originate from this project are dedicated to the public domain. I would love pull requests, and will assume that any Clojure contributions are also dedicated to the public domain.
+All source files that originate from this project are dedicated to the public domain. I would love pull requests, and will assume they are also dedicated to the public domain.
