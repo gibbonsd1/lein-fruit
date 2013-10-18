@@ -5,10 +5,9 @@
             [robert.hooke :as hooke]))
 
 (def ^:const robovm-compiler "/lib/robovm-compiler.jar")
-(def ^:const robovm-jars
-  ["/lib/robovm-rt.jar"
-   "/lib/robovm-objc.jar"
-   "/lib/robovm-cocoatouch.jar"])
+(def ^:const robovm-libs ["/lib/robovm-rt.jar"
+                          "/lib/robovm-objc.jar"
+                          "/lib/robovm-cocoatouch.jar"])
 
 (defn source-to-bytecode
   "Compiles the Java and Clojure source files into bytecode."
@@ -38,11 +37,11 @@
   "Executes a subtask defined by `name` on the given project."
   [project name args]
   (case name
-    "new" (if (> (count args) 0)
-            (leiningen.new/new {} "ios-clojure" (first args))
+    "new" (if-let [arg (first args)]
+            (leiningen.new/new {} "ios-clojure" arg)
             (println "Must provide a project name after `new`."))
-    "new-java" (if (> (count args) 0)
-                 (leiningen.new/new {} "ios-java" (first args))
+    "new-java" (if-let [arg (first args)]
+                 (leiningen.new/new {} "ios-java" arg)
                  (println "Must provide a project name after `new-java`."))
     "compile" (source-to-bytecode project)
     "help" (run-robovm project ["-help"])
@@ -67,7 +66,7 @@
   (reduce (fn [paths path]
             (conj paths (str robovm-path path)))
           (f project)
-          robovm-jars))
+          robovm-libs))
 
 (defn ^{:no-project-needed true} fruit
   "Provides a main entry point."
