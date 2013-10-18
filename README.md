@@ -18,10 +18,13 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 
 ```clojure
 {:user {
-    :plugins [[lein-fruit "0.1.0-SNAPSHOT"]]
+    :plugins [[lein-fruit "x.x.x"]]
     :ios {:robovm-path "/absolute/path/to/robovm-0.0.5"}
 }}
 ```
+
+Replace the "x.x.x" with the version below:
+[[https://clojars.org/lein-fruit][https://clojars.org/lein-fruit/latest-version.svg]]
 
 ## Usage
 
