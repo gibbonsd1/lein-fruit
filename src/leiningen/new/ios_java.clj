@@ -16,5 +16,6 @@
               :year (t/year)}]
     (t/->files data
                ["project.clj" (render "project.clj" data)]
+               ["Info.plist.xml" (render "Info.plist.xml" data)]
                ["src/{{path}}.java" (render "Main.java" data)]
                "resources")))

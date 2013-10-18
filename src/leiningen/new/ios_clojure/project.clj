@@ -6,6 +6,13 @@
   :javac-options ["-target" "1.7" "-source" "1.7" "-Xlint:-options"]
   :ios {:robovm-opts ["-forcelinkclasses" "{{package-prefix}}.**:clojure.**:org.robovm.cocoatouch.**"
                       "-frameworks" "UIKit:OpenGLES:QuartzCore:CoreGraphics:OpenAL:AudioToolbox:AVFoundation"
-                      "-resources" "resources/**"]}
+                      "-resources" "resources/**"
+                      "-plist" "Info.plist.xml"
+
+                      ; these properties will be inserted into Info.plist.xml
+                      "-Papp.build=1"
+                      "-Papp.id={{package}}"
+                      "-Papp.executable={{app-name}}"
+                      "-Papp.name={{app-name}}"]}
   :aot :all
   :main {{java-namespace}})

@@ -18,7 +18,7 @@
 
 (defn run-robovm
   "Runs the RoboVM executable."
-  [{{:keys [robovm-path robovm-opts]} :ios :as project} args]
+  [{{:keys [robovm-path robovm-opts]} :ios version :version :as project} args]
   (->> [(or (:java-cmd project) (System/getenv "JAVA_CMD") "java")
         "-Xmx4096m" "-Xss1024k"
         "-jar" (str robovm-path robovm-compiler)
@@ -26,6 +26,7 @@
         (->> (leiningen.core.classpath/get-classpath project)
              (filter #(.exists (io/file %)))
              (clojure.string/join ":"))
+        (when version (str "-Papp.version=" version))
         robovm-opts
         args
         (str (:main project))]

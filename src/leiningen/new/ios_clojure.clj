@@ -4,6 +4,7 @@
 (defn ios-clojure
   [name]
   (let [render (t/renderer "ios-clojure")
+        java-render (t/renderer "ios-java")
         main-ns (t/multi-segment (t/sanitize-ns name))
         utils-ns (str main-ns "-utils")
         package-name (t/sanitize main-ns)
@@ -25,6 +26,7 @@
               :year (t/year)}]
     (t/->files data
                ["project.clj" (render "project.clj" data)]
+               ["Info.plist.xml" (java-render "Info.plist.xml" data)]
                ["src/clojure/{{path}}.clj" (render "core.clj" data)]
                ["src/clojure/{{utils-path}}.clj" (render "utils.clj" data)]
                ["src/java/{{java-path}}.java" (render "Main.java" data)]
