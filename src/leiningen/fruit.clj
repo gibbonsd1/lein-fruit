@@ -1,7 +1,7 @@
 (ns leiningen.fruit
   (:require [clojure.java.io :as io]
             [leiningen compile javac new]
-            [leiningen.core classpath eval]
+            [leiningen.core classpath eval main]
             [robert.hooke :as hooke]))
 
 (def ^:const robovm-compiler "/lib/robovm-compiler.jar")
@@ -19,6 +19,8 @@
 (defn run-robovm
   "Runs the RoboVM executable."
   [{{:keys [robovm-path robovm-opts]} :ios version :version :as project} args]
+  (when-not robovm-path
+    (leiningen.core.main/abort "You need to set the RoboVM path."))
   (->> [(or (:java-cmd project) (System/getenv "JAVA_CMD") "java")
         "-Xmx4096m" "-Xss1024k"
         "-jar" (str robovm-path robovm-compiler)
