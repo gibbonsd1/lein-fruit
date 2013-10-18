@@ -2,10 +2,10 @@
   (:require [leiningen.new.templates :as t]))
 
 (defn ios-java
-  [name]
+  [name package-name]
   (let [render (t/renderer "ios-java")
-        package-name (t/multi-segment (t/sanitize name))
         class-name "Main"
+        package-name (t/sanitize (t/multi-segment (or package-name name)))
         main-ns (str package-name "." class-name)
         data {:app-name name
               :name (t/project-name name)

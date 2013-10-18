@@ -40,10 +40,10 @@
   [project name args]
   (case name
     "new" (if-let [arg (first args)]
-            (leiningen.new/new {} "ios-clojure" arg)
+            (leiningen.new/new {} "ios-clojure" arg (second args))
             (println "Must provide a project name after `new`."))
     "new-java" (if-let [arg (first args)]
-                 (leiningen.new/new {} "ios-java" arg)
+                 (leiningen.new/new {} "ios-java" arg (second args))
                  (println "Must provide a project name after `new-java`."))
     "compile" (source-to-bytecode project)
     "help" (run-robovm project ["-help"])

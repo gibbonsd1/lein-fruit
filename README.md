@@ -30,8 +30,8 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 lein fruit new hello-world
 # ...or a new Java/iOS project
 lein fruit new-java hello-world
-# Go inside the project
-cd hello-world
+# You may optionally specify a package name
+lein fruit new-java hello-world info.oakleaf.hello_world
 
 # Build an x86 version and run in a simulator
 lein fruit doall

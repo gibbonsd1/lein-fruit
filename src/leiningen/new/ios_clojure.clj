@@ -2,15 +2,15 @@
   (:require [leiningen.new.templates :as t]))
 
 (defn ios-clojure
-  [name]
+  [name package-name]
   (let [render (t/renderer "ios-clojure")
         java-render (t/renderer "ios-java")
-        main-ns (t/multi-segment (t/sanitize-ns name))
-        utils-ns (str main-ns "-utils")
-        package-name (t/sanitize main-ns)
+        class-name "Main"
+        package-name (t/sanitize (t/multi-segment (or package-name name)))
         package-prefix (->> (.lastIndexOf package-name ".")
                             (subs package-name 0))
-        class-name "Main"
+        main-ns (t/sanitize-ns package-name)
+        utils-ns (str main-ns "-utils")
         java-ns (str package-name "." class-name)
         data {:app-name name
               :name (t/project-name name)
