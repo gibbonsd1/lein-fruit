@@ -62,7 +62,7 @@
     "release" (or (execute-subtask project "compile" args)
                   (execute-subtask project "ipa" args))
     
-    :else (println "Subtask is not recognized:" name)))
+    (println "Subtask is not recognized:" name)))
 
 (defn classpath-hook
   "Adds the RoboVM paths to the classpath."
