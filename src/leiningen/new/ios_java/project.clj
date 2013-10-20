@@ -1,4 +1,4 @@
-(defproject {{app-name}} "0.1.0-SNAPSHOT"
+(defproject {{app-name}} "0.0.1-SNAPSHOT"
   :description "FIXME: write description"
   :java-source-paths ["src"]
   :javac-options ["-target" "1.7" "-source" "1.7" "-Xlint:-options"]
