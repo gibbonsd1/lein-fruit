@@ -1,4 +1,4 @@
-(defproject lein-fruit "0.1.0"
+(defproject lein-fruit "0.1.1"
   :description "Plugin for easy Clojure/iOS development and deployment"
   :url "https://github.com/oakes/lein-fruit"
   :license {:name "Public Domain"
