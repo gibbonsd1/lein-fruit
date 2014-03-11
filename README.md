@@ -5,7 +5,7 @@ A Leiningen plugin for building native iOS apps in Clojure and Java using the [R
 ## Caveats
 
 1. There is no REPL and any attempt to call eval at runtime will cause an exception because iOS doesn't allow executable memory.
-2. Due to Clojure's [import behavior](https://groups.google.com/d/msg/clojure/tWSEsOk_pM4/y7kDQpEV-1gJ), importing most [RoboVM Cocoa Touch classes](https://github.com/robovm/robovm/tree/master/cocoatouch/src/main/java/org/robovm/cocoatouch) will lead to a compile error. Instead, you must invoke these classes dynamically. The template provides an example of this, including some helpful convenience functions.
+2. Due to Clojure's [import behavior](https://groups.google.com/d/msg/clojure/tWSEsOk_pM4/y7kDQpEV-1gJ), importing most [RoboVM Cocoa Touch classes](https://github.com/robovm/robovm/tree/master/cocoatouch/src/main/java/org/robovm/cocoatouch) will lead to a compile error. This bug has [been reported](http://dev.clojure.org/jira/browse/CLJ-1315) and looks like it will be fixed. In the meantime, you'll need to either invoke these classes dynamically (which is what the built-in template does), or create a custom version of Clojure with the provided patch.
 
 ## Installation
 
