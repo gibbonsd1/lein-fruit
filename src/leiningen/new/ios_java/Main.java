@@ -1,15 +1,15 @@
 package {{package}};
 
-import org.robovm.cocoatouch.coregraphics.*;
-import org.robovm.cocoatouch.foundation.*;
-import org.robovm.cocoatouch.uikit.*;
+import org.robovm.apple.coregraphics.*;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.uikit.*;
 
-public class {{class-name}} extends UIApplicationDelegate.Adapter {
+public class {{class-name}} extends UIApplicationDelegateAdapter {
 	private UIWindow window = null;
 	private int clickCount = 0;
 	
 	public boolean didFinishLaunching(UIApplication app, NSDictionary opts) {
-		final UIButton button = UIButton.fromType(UIButtonType.RoundedRect);
+		final UIButton button = UIButton.create(UIButtonType.RoundedRect);
 		button.setFrame(new CGRect(115.0f, 121.0f, 91.0f, 37.0f));
 		button.setTitle("Click me!", UIControlState.Normal);
 		
@@ -20,7 +20,7 @@ public class {{class-name}} extends UIApplicationDelegate.Adapter {
 		});
 		
 		window = new UIWindow(UIScreen.getMainScreen().getBounds());
-		window.setBackgroundColor(UIColor.lightGrayColor());
+		window.setBackgroundColor(UIColor.colorLightGray());
 		window.addSubview(button);
 		window.makeKeyAndVisible();
 		
@@ -30,6 +30,6 @@ public class {{class-name}} extends UIApplicationDelegate.Adapter {
 	public static void main(String[] args) {
 		NSAutoreleasePool pool = new NSAutoreleasePool();
 		UIApplication.main(args, null, {{class-name}}.class);
-		pool.drain();
+		pool.close();
 	}
 }

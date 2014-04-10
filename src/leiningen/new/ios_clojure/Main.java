@@ -3,12 +3,10 @@ package {{package}};
 import clojure.lang.RT;
 import clojure.lang.Symbol;
 
-import org.robovm.cocoatouch.foundation.NSAutoreleasePool;
-import org.robovm.cocoatouch.foundation.NSDictionary;
-import org.robovm.cocoatouch.uikit.UIApplication;
-import org.robovm.cocoatouch.uikit.UIApplicationDelegate;
+import org.robovm.apple.foundation.*;
+import org.robovm.apple.uikit.*;
 
-public class {{class-name}} extends UIApplicationDelegate.Adapter {
+public class {{class-name}} extends UIApplicationDelegateAdapter {
 	public boolean didFinishLaunching(UIApplication app, NSDictionary opts) {
 		RT.var("clojure.core", "require").invoke(Symbol.intern("{{namespace}}"));
 		RT.var("{{namespace}}", "init").invoke();
@@ -18,6 +16,6 @@ public class {{class-name}} extends UIApplicationDelegate.Adapter {
 	public static void main(String[] args) {
 		NSAutoreleasePool pool = new NSAutoreleasePool();
 		UIApplication.main(args, null, {{class-name}}.class);
-		pool.drain();
+		pool.close();
 	}
 }
