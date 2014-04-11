@@ -10,7 +10,6 @@
         package-prefix (->> (.lastIndexOf package-name ".")
                             (subs package-name 0))
         main-ns (t/sanitize-ns package-name)
-        utils-ns (str main-ns "-utils")
         java-ns (str package-name "." class-name)
         data {:app-name name
               :name (t/project-name name)
@@ -18,16 +17,13 @@
               :package-prefix package-prefix
               :class-name class-name
               :namespace main-ns
-              :utils-namespace utils-ns
               :java-namespace java-ns
               :path (t/name-to-path main-ns)
-              :utils-path (t/name-to-path utils-ns)
               :java-path (t/name-to-path java-ns)
               :year (t/year)}]
     (t/->files data
                ["project.clj" (render "project.clj" data)]
                ["Info.plist.xml" (java-render "Info.plist.xml" data)]
                ["src/clojure/{{path}}.clj" (render "core.clj" data)]
-               ["src/clojure/{{utils-path}}.clj" (render "utils.clj" data)]
                ["src/java/{{java-path}}.java" (render "Main.java" data)]
                "resources")))
