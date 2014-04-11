@@ -14,14 +14,10 @@ The programming is done by using RoboVM's [wrapper classes](https://github.com/r
 
 ```clojure
 {:user {
-    :plugins [[lein-fruit "x.x.x"]]
+    :plugins [[lein-fruit "0.2.0"]]
     :ios {:robovm-path "/absolute/path/to/robovm-0.0.11"}
 }}
 ```
-
-Replace the "x.x.x" with the version below:
-
-![](https://clojars.org/lein-fruit/latest-version.svg)
 
 ## Usage
 
