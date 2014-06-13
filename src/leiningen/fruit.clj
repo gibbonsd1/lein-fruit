@@ -61,7 +61,7 @@
     "create-ipa" (run-robovm project ["-arch" "thumbv7" "-createipa" args])
     "run-ipa" (run-robovm project ["-arch" "thumbv7" "-run" args])
     "ipa" (or (execute-subtask project "create-ipa" args)
-              (execute-subtask project "run-ipa") args)
+              (execute-subtask project "run-ipa" args))
     "release" (or (execute-subtask project "compile" args)
                   (execute-subtask project "ipa" args))
     
