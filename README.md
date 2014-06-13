@@ -36,7 +36,7 @@ lein fruit compile && lein fruit run
 # Use the iPad simulator
 lein fruit doall -ios-sim-family ipad
 
-# Build an ARM version and run on a device
+# Build an ARM version
 lein fruit release
 # ..which is the same thing as
 lein fruit compile && lein fruit ipa
